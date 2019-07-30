@@ -2,8 +2,12 @@ package com.example.activitiesandintents;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView messageReceived;
+    private TextView message;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
