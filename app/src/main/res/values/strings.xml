@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Activities and intents</string>
+    <string name="message_received">Message Received</string>
+</resources>
