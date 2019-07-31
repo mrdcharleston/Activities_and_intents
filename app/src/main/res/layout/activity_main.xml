@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/liner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+            />
+
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/message_received"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/liner_layout"
         android:layout_margin="8dp"
         android:text="@string/message_received"
         android:textSize="16sp"
@@ -17,32 +35,33 @@
 
     <TextView
         android:id="@+id/message"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/message_received" />
+        android:layout_below="@id/message_received"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp" />
 
     <EditText
-        android:hint="@string/enter_your_message_here"
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:inputType="text"
+        android:layout_margin="8dp"
         android:layout_toStartOf="@id/sendMessage"
         android:layout_toLeftOf="@id/sendMessage"
-        android:layout_margin="8dp"
+        android:hint="@string/enter_your_message_here"
+        android:inputType="text"
 
         />
 
     <Button
-        android:layout_margin="8dp"
         android:id="@+id/sendMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
         android:text="@string/send"
 
 

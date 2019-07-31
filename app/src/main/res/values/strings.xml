@@ -3,4 +3,6 @@
     <string name="message_received">Message Received</string>
     <string name="enter_your_message_here">Enter Your Message Here</string>
     <string name="send">send</string>
+    <string name="reply">reply</string>
+    <string name="enter_your_reply_message_here">Enter Your Reply Message Here</string>
 </resources>
