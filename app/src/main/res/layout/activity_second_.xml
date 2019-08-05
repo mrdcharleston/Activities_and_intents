@@ -49,7 +49,7 @@
         android:layout_margin="8dp"
         android:layout_toStartOf="@id/sendMessage"
         android:layout_toLeftOf="@id/sendMessage"
-        android:hint="@string/enter_your_reply_message_here"
+        android:hint="@string/enter_your_reply_here"
         android:inputType="text"
 
         />
