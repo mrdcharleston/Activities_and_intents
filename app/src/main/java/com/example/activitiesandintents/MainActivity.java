@@ -1,6 +1,7 @@
 package com.example.activitiesandintents;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,9 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private Button sendMessage;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    public static final String EXTRA_MESSAGE = "com.example.android.activitiesandintents.extra.MESSAGE";
-
-
+    public static final String EXTRA_MESSAGE = "";
+    public static final int TEXT_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         messageReceived = findViewById(R.id.message_received);
+        message = findViewById(R.id.reply_message);
         editText = findViewById(R.id.editText);
         sendMessage = findViewById(R.id.sendMessage);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
         if (getActionBar() != null) {
             if(getSupportActionBar() != null) {
                 ActionBar actionBar = getSupportActionBar();
@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-
-
 
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,13 +49,24 @@ public class MainActivity extends AppCompatActivity {
                 String userText = editText.getText().toString();
                 sendIntent.putExtra(EXTRA_MESSAGE,userText);
                 sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+                startActivityForResult(sendIntent,TEXT_REQUEST);
             }
+
         });
 
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
-
+        if (requestCode == TEXT_REQUEST) {
+            if (resultCode == RESULT_OK){
+                String reply = data.getStringExtra(Second_Activity.EXTRA_MESSAGE);
+                messageReceived.setVisibility(View.VISIBLE);
+                message.setText(reply);
+                message.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }

@@ -5,6 +5,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,10 +14,10 @@ import android.widget.TextView;
 
 public class Second_Activity extends AppCompatActivity {
 
-    TextView messageReceived;
-    TextView message;
-    EditText editText;
-    Button replyToMessage;
+    private TextView message;
+    private EditText editText;
+    private Button replyToMessage;
+    public static final String EXTRA_MESSAGE = "";
 
 
     @Override
@@ -25,7 +27,10 @@ public class Second_Activity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        message = findViewById(R.id.message_received);
+
+        message = findViewById(R.id.message);
+        editText = findViewById(R.id.editText);
+        replyToMessage = findViewById(R.id.sendMessage);
 
         if(getSupportActionBar() != null) {
             ActionBar actionBar = getSupportActionBar();
@@ -34,8 +39,19 @@ public class Second_Activity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String getMessage = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
         message.setText(getMessage);
+
+        replyToMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userText = editText.getText().toString();
+                Intent replyIntent = new Intent();
+                replyIntent.putExtra(EXTRA_MESSAGE,userText);
+                setResult(RESULT_OK,replyIntent);
+                finish();
+
+            }
+        });
 
 
 
